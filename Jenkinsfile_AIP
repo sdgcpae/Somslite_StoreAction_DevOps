@@ -31,7 +31,7 @@ spec:
 							echo 'use the command below when we switch to somslite source'
 							// sh 'for i in somslitebuild;do gradle --no-daemon -p ${i} clean build;done'
 							echo 'Add gradle clean and build for Somslite and comment this step' 
-							sh 'mvn -f sample-java-app/pom.xml clean package'
+							sh "mvn -Drevision=SomsLite-${env.GIT_BRANCH}-build-${env.BUILD_NUMBER}-SNAPSHOT -f sample-java-app/pom.xml clean package"
 							propfile = readProperties(file: './project.properties')
 							if (propfile['javadoc'] == "true") {
 								sh 'mvn javadoc:aggregate'
@@ -89,7 +89,7 @@ spec:
 						echo 'remove the 3 lines below when we switch to actual somslite repo'
 						sh "mv sample-java-app/target/sample-0.0.1-SNAPSHOT.jar sample-java-app/target/sample-build_${BUILD_NUMBER}-branch_${env.GIT_BRANCH}.jar"
 						sh 'ls -lrt sample-java-app/target/'
-						sh "mvn -X deploy:deploy-file  -Dfile=sample-java-app/target/sample-build_${BUILD_NUMBER}-branch_${env.GIT_BRANCH}.jar -DpomFile=sample-java-app/pom.xml -DrepositoryId=snapshots -Durl=https://archiva.sgn.devops.accentureanalytics.com/repository/snapshots/"
+						sh "mvn clean deploy -Drevision=SomsLite-${env.GIT_BRANCH}-build-${env.BUILD_NUMBER}-SNAPSHOT -Dmaven.test.skip=true"
 					}
 				}
 			}
