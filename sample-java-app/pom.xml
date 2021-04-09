@@ -10,14 +10,13 @@
 	</parent>
 	<groupId>io.buildpacks.example</groupId>
 	<artifactId>sample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${revision}</version>
 	<name>sample</name>
 	<description>Sample Java Application</description>
-
 	<properties>
 		<java.version>1.8</java.version>
+		<revision>0.0.1-SNAPSHOT</revision>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -32,43 +31,31 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		
+		</dependency>		
 	</dependencies>
-	
-	
 	<distributionManagement>
     		<repository>
       			<id>internal</id>
       			<name>Archiva Managed Internal Repository</name>
-      			<url>https://archiva.sgn.devops.accentureanalytics.com/repository/internal/</url>
+      			<url>https://archiva.sgnt.devops.accentureanalytics.com/repository/internal/</url>
     		</repository>
     		<snapshotRepository>
       			<id>snapshots</id>
       			<name>Archiva Managed Snapshot Repository</name>
-      			<url>https://archiva.sgn.devops.accentureanalytics.com/repository/snapshots/</url>
+      			<url>https://archiva.sgnt.devops.accentureanalytics.com/repository/snapshots/</url>
     		</snapshotRepository>
  	</distributionManagement>
-
-	
-	
-
-
-	
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
 			<plugin>
     				<groupId>org.apache.httpcomponents</groupId>
     				<artifactId>httpclient</artifactId>
     				<version>4.5.3</version>
 			</plugin>
-			
-
 			<plugin>
   <groupId>org.jacoco</groupId>
   <artifactId>jacoco-maven-plugin</artifactId>
@@ -106,7 +93,7 @@
               <limit>
                 <counter>LINE</counter>
                 <value>COVEREDRATIO</value>
-                <minimum>80%</minimum>
+                <minimum>60%</minimum>
               </limit>
             </limits>
           </rule>
@@ -114,8 +101,7 @@
       </configuration>
     </execution>
   </executions>
-</plugin>
-			
+</plugin>	
 		</plugins>
 		<extensions>
 			<extension>
@@ -123,15 +109,13 @@
 				<artifactId>wagon-http</artifactId>
 				<version>2.5</version>
 			</extension>
-		</extensions>
-			
-	</build>
-			
+		</extensions>			
+	</build>		
 	<pluginRepositories>
     		<pluginRepository>
       			<id>snapshots</id>
       			<name>Archiva Managed Snapshot Repository</name>
-      			<url>https://archiva.sgn.devops.accentureanalytics.com/repository/snapshots/</url>
+      			<url>https://archiva.sgnt.devops.accentureanalytics.com/repository/snapshots/</url>
       			<releases>
         			<enabled>false</enabled>
       			</releases>
@@ -140,10 +124,4 @@
       			</snapshots>
     		</pluginRepository>
   	</pluginRepositories>
-		
-		
-		
-		
-	
-
 </project>
